@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>FlagTab</title>
+
+        <style>
+            body {
+                background-color: thistle;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                height: 100vh;
+                margin: 0;
+            }
+
+            div {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            a {
+                font-size: xx-large;
+                padding-bottom: 2vh;
+            }
+
+            label {
+                padding-bottom: 2vh;
+            }
+
+            input {
+                padding: 1vh;
+                border-radius: 1vh;
+
+                border-color: steelblue;
+                background-color: mintcream;
+            }
+
+            input:focus,
+            input:active {
+                outline: none;
+                box-shadow: none;
+            }
+
+            button {
+                padding: 1vh;
+                border-radius: 1vh;
+
+                border-color: skyblue;
+                background-color: mintcream;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div>
+            <a>FlagTab</a>
+            <label><input type="text" placeholder="CSS Color" id="color"></label>
+            <label><input type="text" placeholder="Tab Name" id="name"></label>
+            <button onclick="apply()">Apply</button>
+        </div>
+    </body>
+
+    <script>
+        let color = document.getElementById("color");
+        let name = document.getElementById("name");
+
+        function apply() {
+            // Set Title
+            document.title = name.value;
+
+            // Set icon
+            // TODO Shape & Color Picker
+            let canvas = document.createElement("canvas");
+            canvas.width = canvas.height = 16;
+            let ctx = canvas.getContext("2d");
+            ctx.fillStyle = color.value; // any color you want
+            ctx.fillRect(0, 0, 16, 16);
+
+            let link = document.querySelector("link[rel~='icon']") || document.createElement("link");
+            link.rel = "icon";
+            link.href = canvas.toDataURL("image/png");
+            document.head.appendChild(link);
+        }
+    </script>
+</html>
