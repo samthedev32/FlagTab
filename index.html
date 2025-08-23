@@ -45,14 +45,6 @@
                 outline: none;
                 box-shadow: none;
             }
-
-            button {
-                padding: 1vh;
-                border-radius: 1vh;
-
-                border-color: skyblue;
-                background-color: mintcream;
-            }
         </style>
     </head>
 
@@ -61,7 +53,6 @@
             <a>FlagTab</a>
             <label><input type="text" placeholder="CSS Color" id="color"></label>
             <label><input type="text" placeholder="Tab Name" id="name"></label>
-            <button onclick="apply()">Apply</button>
         </div>
     </body>
 
@@ -86,5 +77,8 @@
             link.href = canvas.toDataURL("image/png");
             document.head.appendChild(link);
         }
+
+        window.addEventListener("pageshow", apply);
+        document.addEventListener("input", apply, { passive: true });
     </script>
 </html>
